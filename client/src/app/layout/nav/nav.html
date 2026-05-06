@@ -1,0 +1,69 @@
+
+<header class="w-full fixed top-0 z-50 bg-green-400/80 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex flex-row items-center h-15 px-6 lg:px-10">
+      
+      <!-- Logo Section -->
+      <a routerLink="/" class="flex items-center gap-3 pr-8 group transition-all">
+        <span class="text-2xl text-gray-900 font-black tracking-tighter whitespace-nowrap">
+          AI <span class="text-green-600 font-light italic">ADAPTIVE</span>
+        </span>
+      </a>
+  
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 ml-4">
+        <a routerLink="/" class="text-sm font-bold text-white hover:text-green-600 transition-colors uppercase tracking-widest">Home</a>
+        <a routerLink="/quizzes" class="text-sm font-bold text-white hover:text-green-600 transition-colors uppercase tracking-widest">Quizzes</a>
+        <a routerLink="/about" class="text-sm font-bold textw-white hover:text-green-600 transition-colors uppercase tracking-widest">About</a>
+      </nav>
+  
+      <!-- Right Side Actions -->
+      <div class="ml-auto flex items-center gap-4">
+        
+        <!-- Guest State -->
+        @if (accountService.currentUser() == null) {
+          <div class="flex gap-3 items-center">
+            <button type="button" routerLink="/login"
+                    class="h-11 px-8 w-32 bg-white rounded-full text-green-400 text-xs font-black tracking-widest uppercase hover:text-green-600 transition-colors shadow-2xl">
+              Log In
+            </button>
+            <button type="button" routerLink="/register"
+                    class="h-11 px-8 w-32 outline-2 text-white text-xs font-black tracking-widest uppercase rounded-full hover:bg-green-400 hover:scale-105 transition-all shadow-lg shadow-green-500/25">
+              Sign Up
+            </button>
+          </div>
+        } 
+        
+        <!-- Authenticated State -->
+        @else {
+          <div class="flex items-center gap-6">
+            <div class="hidden sm:flex flex-col items-end">
+              <span class="text-xs font-black text-gray-900 leading-none">
+                  {{ accountService.currentUser()?.userName }}
+              </span>
+              <span class="text-[10px] font-bold text-green-600 uppercase tracking-tighter">
+                  {{ accountService.currentUser()?.role || 'Member' }}
+              </span>
+            </div>
+            
+            <!-- Dropdown for Profile/Logout -->
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="w-10 h-10 rounded-full bg-gray-100 border-2 border-green-500 p-0.5 hover:scale-110 transition-transform">
+                  <img src="https://api.dicebear.com/7.x/avataaars/svg?seed={{ accountService.currentUser()?.userName }}" class="rounded-full" alt="avatar">
+              </div>
+              <ul tabindex="0" class="dropdown-content menu bg-white rounded-box z-[1] w-52 p-2 shadow-xl border border-gray-100 mt-4">
+                  <li><a class="text-gray-700 font-bold py-3">My Profile</a></li>
+                  <li><a routerLink="/quizzes" class="text-gray-700 font-bold py-3">My Quizzes</a></li>
+                  <div class="divider my-0"></div>
+                  <li>
+                      <a (click)="logout()" class="text-red-500 font-black py-3">
+                          Logout
+                      </a>
+                  </li>
+              </ul>
+            </div>
+          </div>
+        }
+  
+      </div>
+    </div>
+</header>

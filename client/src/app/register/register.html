@@ -1,0 +1,116 @@
+<p>register works!</p>
+<div class="min-h-screen bg-white flex items-center justify-center px-4 pt-28 pb-12 relative overflow-hidden">
+    <!-- Dynamic Background Decor -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-50 via-transparent to-transparent opacity-60"></div>
+  
+    <div class="card w-full max-w-2xl bg-white/80 backdrop-blur-xl border border-gray-100 shadow-2xl rounded-[2.5rem] relative z-10">
+      <div class="card-body p-8 md:p-12">
+        
+        <!-- Header -->
+        <div class="flex flex-col items-center mb-10">
+          <h2 class="text-4xl font-black text-gray-900 tracking-tighter">Create Account</h2>
+          <p class="text-green-400 font-medium text-sm mt-2 ml-2">Join the AI Adaptive Quiz community</p>
+        </div>
+  
+        <form #registerForm="ngForm" (ngSubmit)="register()" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+            
+            <!-- First Name -->
+            <div class="form-control w-full">
+              <label class="label pb-2 px-1"><span class="label-text text-gray-700 font-black tracking-widest text-[12px]">First Name</span></label>
+              <input [(ngModel)]="model.firstName" name="firstName" type="text" placeholder="John" required #firstName="ngModel"
+                class="input input-bordered bg-gray-50 border-gray-200 text-gray-900 rounded-2xl h-12 w-full focus:border-green-500 focus:ring-2 focus:ring-green-400/80 transition-all font-medium"
+                [class.border-red-500]="firstName.invalid && firstName.touched"/>
+            </div>
+  
+            <!-- Last Name -->
+            <div class="form-control w-full">
+              <label class="label pb-2 px-1"><span class="label-text text-gray-700 font-black tracking-widest text-[12px]">Last Name</span></label>
+              <input [(ngModel)]="model.lastName" name="lastName" type="text" placeholder="Doe" required #lastName="ngModel"
+                class="input input-bordered bg-gray-50 border-gray-200 text-gray-900 rounded-2xl h-12 w-full focus:border-green-500 focus:ring-2 focus:ring-green-400/80 transition-all font-medium"
+                [class.border-red-500]="lastName.invalid && lastName.touched"/>
+            </div>
+  
+            <!-- Email Address -->
+            <div class="form-control w-full">
+              <label class="label pb-2 px-1"><span class="label-text text-gray-700 font-black tracking-widest text-[12px]">Email Address</span></label>
+              <input [(ngModel)]="model.emailAddress" name="emailAddress" type="email" placeholder="john@example.com" required email #email="ngModel"
+                class="input input-bordered bg-gray-50 border-gray-200 text-gray-900 rounded-2xl h-12 w-full focus:border-green-500 focus:ring-2 focus:ring-green-400/80 transition-all font-medium"
+                [class.border-red-500]="email.invalid && email.touched"/>
+              @if (email.invalid && email.touched) {
+                <span class="text-[10px] text-red-500 mt-1 font-bold pl-1 uppercase tracking-tighter">Enter a valid email</span>
+              }
+            </div>
+  
+            <!-- Username with Server Check Integration -->
+            <div class="form-control w-full">
+              <label class="label pb-2 px-1"><span class="label-text text-gray-700 font-black tracking-widest text-[12px]">Username</span></label>
+              <input [(ngModel)]="model.userName" (ngModelChange)="userNameServerError.set('')" name="userName" type="text" placeholder="johndoe123" required #uName="ngModel"
+                class="input input-bordered bg-gray-50 border-gray-200 text-gray-900 rounded-2xl h-12 w-full focus:border-green-500 focus:ring-2 focus:ring-green-400/80 transition-all font-medium"
+                [class.border-red-500]="(uName.invalid && uName.touched) || userNameServerError()"/>
+              @if (userNameServerError()) {
+                <span class="text-[10px] text-red-500 mt-1 font-bold pl-1 uppercase tracking-tighter">{{ userNameServerError() }}</span>
+              }
+            </div>
+  
+            <!-- Account Role -->
+            <div class="form-control w-full">
+              <label class="label pb-2 px-1"><span class="label-text text-gray-700 font-black tracking-widest text-[12px]">Account Role</span></label>
+              <select [(ngModel)]="model.role" name="role" required class="select select-bordered bg-gray-50 border-gray-200 text-gray-900 rounded-2xl h-12 w-full focus:border-green-500 font-bold">
+                <option value="Student">Student</option>
+                <option value="Mentor">Mentor</option>
+              </select>
+            </div>
+  
+            <!-- Password -->
+            <div class="form-control w-full">
+              <label class="label pb-2 px-1"><span class="label-text text-gray-700 font-black tracking-widest text-[12px]">Password</span></label>
+              <input [(ngModel)]="model.password" name="password" type="password" placeholder="••••••••" required minlength="6" #pass="ngModel"
+                class="input input-bordered bg-gray-50 border-gray-200 text-gray-900 rounded-2xl h-12 w-full focus:border-green-500 focus:ring-2 focus:ring-green--400/80 transition-all font-medium"
+                [class.border-red-500]="pass.invalid && pass.touched"/>
+              @if (pass.errors?.['minlength'] && pass.touched) {
+                <span class="text-[10px] text-red-500 mt-1 font-bold pl-1 uppercase tracking-tighter">Min 6 characters required</span>
+              }
+            </div>
+  
+            <!-- Confirm Password -->
+            <div class="form-control flex flex-col md:col-span-2 justify-center items-center">
+              <div>
+                <label class="label pb-2 px-1"><span class="label-text text-gray-700 font-black tracking-widest text-[12px]">Confirm Password</span></label>
+                <input [(ngModel)]="model.confirmPassword" name="confirmPassword" type="password" placeholder="••••••••" required #cPass="ngModel"
+                    class="input input-bordered bg-gray-50 border-gray-200 text-gray-900 rounded-2xl h-12 focus:border-green-500 focus:ring-2 focus:ring-green--400/80 transition-all font-medium"
+                    [class.border-red-500]="(cPass.touched && model.password !== model.confirmPassword)"/>
+                @if (cPass.touched && model.password !== model.confirmPassword) {
+                    <span class="text-[10px] text-red-500 mt-1 font-bold pl-1 uppercase tracking-tighter">Passwords do not match</span>
+                }
+              </div>
+            </div>
+          </div>
+  
+          <!-- Submit & General Errors -->
+          <div class="flex flex-col items-center justify-center gap-6 w-full mt-10">
+            <button [disabled]="!registerForm.valid || model.password !== model.confirmPassword" type="submit"
+              class="bg-green-600 border-none text-white font-black text-sm tracking-widest h-14 w-full md:rounded-2xl hover:bg-green-700 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-green-500/30 disabled:bg-gray-200 disabled:text-gray-400">
+              CREATE ACCOUNT
+            </button>
+            
+            <p class="text-sm text-gray-500 font-medium">
+              Already a member? <a routerLink="/login" class="text-green-600 font-black hover:underline">Sign In</a>
+            </p>
+          </div>
+  
+          @if (errorMessage()) {
+            <div class="mt-4 rounded-2xl border-l-4 border-red-500 bg-red-50 px-5 py-4 animate-shake">
+              <div class="flex items-center gap-3">
+                  <span class="text-red-500 font-bold">⚠️</span>
+                  <div>
+                      <p class="text-[10px] uppercase font-black text-red-800 tracking-widest">Registration Failed</p>
+                      <p class="text-xs font-bold text-red-700">{{ errorMessage() }}</p>
+                  </div>
+              </div>
+            </div>
+          }
+        </form>
+      </div>
+    </div>
+  </div>

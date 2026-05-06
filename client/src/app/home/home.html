@@ -1,0 +1,95 @@
+
+<!-- Hero Section -->
+<section class="relative flex flex-col items-center justify-center text-center px-6 pt-48 pb-32 bg-white overflow-hidden">
+  <!-- Dynamic Background Decor -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-50 via-transparent to-transparent opacity-60"></div>
+  
+  <!-- Floating Particle Effect (Optional Aesthetic) -->
+  <div class="absolute top-20 left-10 w-20 h-20 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+  <div class="absolute top-40 right-10 w-24 h-24 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+  <div class="relative z-10 max-w-5xl">
+    <h1 class="text-6xl font-black tracking-tighter mb-8 text-gray-900">
+        Master Any Subject <br/>
+        <span class="bg-gradient-to-r from-green-600 via-emerald-500 to-green-400 bg-clip-text text-transparent">
+            With AI Intelligence
+        </span>
+    </h1>
+
+    <p class="max-w-3xl mx-auto text-gray-600 text-lg md:text-lg leading-relaxed mb-12 font-medium">
+        Experience a next-generation engine that adjusts difficulty in real-time. 
+        Personalized questions, instant feedback, and deep analytics to help you master 
+        technical stacks like <strong>ASP.NET Core</strong> and <strong>Angular</strong>.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+        <button routerLink="/register" class="h-15 w-55 px-12 bg-green-400 hover:bg-green-700 text-white font-black text-xl rounded-full transition-all hover:scale-105 shadow-2xl shadow-green-500/40">
+            Get Started
+        </button>
+        <button routerLink="/login" class="h-16 w-55 px-12 border-2 border-gray-200 hover:border-green-600 text-gray-700 font-black text-xl rounded-full transition-all hover:bg-green-50">
+            Sign In
+        </button>
+    </div>
+  </div>
+</section>
+
+<!-- Features Grid -->
+<section class="py-32 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-4xl font-black text-gray-900 mb-6">Built for Modern Learning</h2>
+            <div class="flex items-center justify-center gap-4">
+                <span class="h-px w-12 bg-green-600"></span>
+                <p class="text-green-600 font-bold tracking-[0.2em] uppercase text-xs">Innovation • Adaptation • Analytics</p>
+                <span class="h-px w-12 bg-green-600"></span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Card 1: AI Engine -->
+            <div class="group relative p-12 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:border-green-500 transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-bl-full translate-x-10 -translate-y-10 group-hover:translate-x-5 group-hover:-translate-y-5 transition-transform duration-500"></div>
+                
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-4xl mb-8 group-hover:bg-green-600 group-hover:text-white transition-all duration-700">
+                        🤖
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-900 mb-4">Adaptive Engine</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Our proprietary AI adjusts difficulty in real-time. If you excel, we challenge you. If you struggle, we adapt to help you grow.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2: Role Based -->
+            <div class="group relative p-12 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:border-blue-500 transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full translate-x-10 -translate-y-10 group-hover:translate-x-5 group-hover:-translate-y-5 transition-transform duration-500"></div>
+
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-4xl mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all duration-700">
+                        👥
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-900 mb-4">Role-Based Logic</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Customized dashboards for Mentors to monitor team growth and Students to achieve technical mastery.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3: Deep Analytics -->
+            <div class="group relative p-12 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:border-purple-500 transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-bl-full translate-x-10 -translate-y-10 group-hover:translate-x-5 group-hover:-translate-y-5 transition-transform duration-500"></div>
+
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-4xl mb-8 group-hover:bg-purple-600 group-hover:text-white group-hover:scale-110 transition-all duration-700">
+                        📊
+                    </div>
+                    <h3 class="text-2xl font-black text-gray-900 mb-4">Deep Analytics</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        Transform quiz data into actionable insights. Visualize progress across different subjects and skill levels.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
