@@ -2,6 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { User } from '../_models/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { User } from '../_models/user';
 export class AccountService {
   private http = inject(HttpClient);
 
-  baseUrl = 'https://localhost:7069/api/';
+  baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
 
   setCurrentUser(user: User) {
@@ -23,7 +24,7 @@ export class AccountService {
   }
 
   login(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
+    return this.http.post<User>(`${this.baseUrl}/account/login`, model).pipe(
       map((user) => {
         if (user) this.setCurrentUser(user);
         return user;
@@ -32,7 +33,7 @@ export class AccountService {
   }
 
   register(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
+    return this.http.post<User>(`${this.baseUrl}/account/register`, model).pipe(
       map((user) => {
         if (user) this.setCurrentUser(user);
         return user;

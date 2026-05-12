@@ -1,0 +1,147 @@
+<div class="min-h-screen bg-white relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-150 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-green-50 via-transparent to-transparent opacity-60"></div>
+
+  <section class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
+      <div>
+        <h1 class="text-5xl font-black text-gray-900 tracking-tighter">
+          Subject <span class="text-green-400">Control</span>
+        </h1>
+        <p class="text-gray-500 text-lg mt-2 font-medium">Design your curriculum and track AI-generated content.</p>
+      </div>
+      
+      <button
+        type="button"
+        (click)="openModal()"
+        class="group flex items-center px-8 py-4 bg-green-400 hover:bg-green-400 text-white rounded-full font-black text-lg transition-all transform hover:scale-105 shadow-2xl shadow-green-500/30"
+      >
+        <svg class="w-6 h-6 mr-2 group-hover:transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/>
+        </svg>
+        New Subject
+      </button>
+    </div>
+
+    @if (loading()) {
+      <div class="flex flex-col items-center justify-center py-32">
+        <div class="animate-spin rounded-full h-14 w-14 border-t-4 border-green-500 border-solid"></div>
+        <p class="mt-6 text-green-400 font-black tracking-widest uppercase text-xs">Synchronizing Engine...</p>
+      </div>
+    } @else {
+      
+      @if (subjects().length === 0) {
+        <div class="bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200 p-20 text-center">
+          <div class="w-20 h-20 bg-green-100 rounded-3xl flex items-center justify-center mx-auto mb-6 text-4xl">
+            📚
+          </div>
+          <h3 class="text-3xl font-black text-gray-900 mb-4">No subjects yet</h3>
+          <p class="text-gray-500 text-lg max-w-md mx-auto mb-8 font-medium">
+            Start your AI-powered teaching journey by creating your first technical subject.
+          </p>
+          <button (click)="openModal()" class="text-green-400 font-black text-lg hover:underline decoration-4 underline-offset-8">
+            Initialize First Subject →
+          </button>
+        </div>
+      } @else {
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          @for (subject of subjects(); track subject.id) {
+            <article class="group relative p-10 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:border-green-500 transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 overflow-hidden flex flex-col">
+              
+              <div class="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-bl-full translate-x-8 -translate-y-8 group-hover:translate-x-4 group-hover:-translate-y-4 transition-transform duration-500"></div>
+
+              <div class="relative z-10 grow">
+                <div class="flex justify-between items-start mb-6">
+                  <span [class]="subject.status === 'active' 
+                                  ? 'bg-green-100 text-green-700 ring-1 ring-green-200' 
+                                  : 'bg-red-50 text-red-500 ring-1 ring-red-200'" 
+                        class="px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
+                      {{ subject.status }}
+                  </span>
+                  
+                  <button (click)="deleteSubject(subject.id)" class="text-gray-300 hover:text-red-500 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <h2 class="text-3xl font-black text-gray-900 mb-3 leading-tight">{{ subject.subjectName }}</h2>
+                <p class="text-gray-500 font-medium leading-relaxed mb-8 line-clamp-2">
+                  {{ subject.description || 'No description provided for this technical module.' }}
+                </p>
+
+                <div class="flex items-center gap-4 text-sm font-bold text-gray-400 mb-8">
+                  <div class="flex items-center gap-2">
+                    <span class="text-xl">📄</span>
+                    {{ subject.hasSyllabus ? 'Syllabus Synced' : 'Missing Syllabus' }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative z-10 pt-6 mt-auto border-t border-gray-50">
+                @if (!subject.hasSyllabus) {
+                  <button class="w-full py-4 bg-gray-50 hover:bg-green-50 text-green-400 rounded-2xl font-black transition-colors flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    Upload Syllabus
+                  </button>
+                } @else {
+                  <button class="w-full py-4 bg-green-500 hover:bg-green-400 text-white rounded-2xl font-black transition-all shadow-lg shadow-green-500/20">
+                    Manage Questions
+                  </button>
+                }
+              </div>
+            </article>
+          }
+        </div>
+      }
+    }
+  </section>
+</div>
+
+@if (showModal()) {
+  <div class="fixed inset-0 z-100 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-md" (click)="closeModal()"></div>
+    
+    <div class="relative bg-white rounded-[3rem] shadow-2xl w-full max-w-lg overflow-hidden transform transition-all border border-gray-100">
+      <div class="p-12">
+        <div class="flex justify-between items-center mb-10">
+          <h3 class="text-3xl font-black text-gray-900 tracking-tighter">Initialize <span class="text-green-400">Subject</span></h3>
+          <button (click)="closeModal()" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-500 hover:bg-red-50 hover:text-red-500 transition-all">&times;</button>
+        </div>
+
+        <form (ngSubmit)="createSubject()" #subjectForm="ngForm" class="space-y-8">
+          <div>
+            <label class="block text-sm font-black uppercase tracking-[0.2em] text-green-400 mb-3">Subject Identity</label>
+            <input 
+              type="text" name="subjectName" [(ngModel)]="newSubject.subjectName" required 
+              class="w-full px-6 py-4 bg-gray-100 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none text-gray-900 font-bold text-lg transition-all placeholder-gray-300"
+              placeholder="e.g. Advanced ASP.NET Logic"
+            >
+          </div>
+
+          <div>
+            <label class="block text-sm font-black uppercase tracking-[0.2em] text-green-400 mb-3">Description</label>
+            <textarea 
+              name="description" [(ngModel)]="newSubject.description" rows="3"
+              class="w-full px-6 py-4 bg-gray-100 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none text-gray-900 font-bold text-lg transition-all placeholder-gray-300"
+              placeholder="What should the AI understand about this course?"
+            ></textarea>
+          </div>
+
+          <div class="flex gap-4 pt-4">
+            <button type="button" (click)="closeModal()" class="flex-1 px-8 py-4 text-gray-400 font-black text-lg hover:text-gray-400text-green-400 transition">Discard</button>
+            <button 
+              type="submit" [disabled]="!subjectForm.valid"
+              class="flex-1 px-8 py-4 bg-green-500 hover:bg-green-400text-green-400 text-white rounded-full font-black text-lg transition shadow-xl shadow-green-500/30 disabled:opacity-30 disabled:grayscale"
+            >
+              Save Module
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+}

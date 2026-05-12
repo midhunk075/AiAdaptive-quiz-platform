@@ -23,9 +23,13 @@ export class Login {
     this.errorMessage.set('');
     this.isLoading.set(true);
     this.accountService.login(this.model).subscribe({
-      next: () => {
+      next: (user) => {
         this.isLoading.set(false);
-        this.router.navigateByUrl('/');
+        if (user?.role?.toLowerCase().includes('mentor')) {
+          this.router.navigateByUrl('/mentor/subjects');
+        } else {
+          this.router.navigateByUrl('/');
+        }
       },
       error: (err: HttpErrorResponse) => {
         const error = err.error?.message ?? 'Login failed. Please try again.';
