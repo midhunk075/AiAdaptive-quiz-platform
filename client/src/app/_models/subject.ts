@@ -7,7 +7,18 @@ export interface Subject {
     hasSyllabus: boolean;
   }
   
-  export interface SubjectCreate {
-    subjectName: string;
-    description: string;
-  }
+export interface SubjectCreate {
+  subjectName: string;
+  description: string;
+}
+
+export interface SubjectTopic {
+  id: string;
+  name: string;
+  isSelected: boolean;
+}
+
+export interface TopicSelectionUpdate {
+  topicId: string;
+  isSelected: boolean;
+}

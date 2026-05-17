@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { environment } from "../../environments/environment";
-import { Subject, SubjectCreate } from "../_models/subject";
+import { Subject, SubjectCreate, SubjectTopic, TopicSelectionUpdate } from "../_models/subject";
 import { map } from "rxjs";
 
 @Injectable({
@@ -30,5 +30,21 @@ export class SubjectService {
 
     deleteSubject(id: string) {
         return this.http.delete(`${this.baseUrl}/subjects/${id}`);
+    }
+
+    uploadSyllabus(subjectId: string, file: File) {
+        const formData = new FormData();
+        formData.append('file', file);
+        return this.http.post<SubjectTopic[]>(`${this.baseUrl}/subjects/${subjectId}/upload-syllabus`, formData);
+    }
+
+    getTopics(subjectId: string) {
+        return this.http.get<SubjectTopic[]>(`${this.baseUrl}/subjects/${subjectId}/topics`);
+    }
+
+    updateTopicSelection(subjectId: string, updates: TopicSelectionUpdate[]) {
+        return this.http.put<SubjectTopic[]>(`${this.baseUrl}/subjects/${subjectId}/topics/selection`, {
+            topics: updates
+        });
     }
 }

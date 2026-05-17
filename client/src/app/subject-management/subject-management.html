@@ -9,7 +9,7 @@
         </h1>
         <p class="text-gray-500 text-lg mt-2 font-medium">Design your curriculum and track AI-generated content.</p>
       </div>
-      
+
       <button
         type="button"
         (click)="openModal()"
@@ -28,37 +28,37 @@
         <p class="mt-6 text-green-400 font-black tracking-widest uppercase text-xs">Synchronizing Engine...</p>
       </div>
     } @else {
-      
+
       @if (subjects().length === 0) {
         <div class="bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200 p-20 text-center">
           <div class="w-20 h-20 bg-green-100 rounded-3xl flex items-center justify-center mx-auto mb-6 text-4xl">
-            📚
+            ??
           </div>
           <h3 class="text-3xl font-black text-gray-900 mb-4">No subjects yet</h3>
           <p class="text-gray-500 text-lg max-w-md mx-auto mb-8 font-medium">
             Start your AI-powered teaching journey by creating your first technical subject.
           </p>
           <button (click)="openModal()" class="text-green-400 font-black text-lg hover:underline decoration-4 underline-offset-8">
-            Initialize First Subject →
+            Initialize First Subject ->
           </button>
         </div>
       } @else {
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           @for (subject of subjects(); track subject.id) {
             <article class="group relative p-10 bg-white rounded-[2.5rem] shadow-sm border border-gray-100 hover:border-green-500 transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 overflow-hidden flex flex-col">
-              
+
               <div class="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-bl-full translate-x-8 -translate-y-8 group-hover:translate-x-4 group-hover:-translate-y-4 transition-transform duration-500"></div>
 
               <div class="relative z-10 grow">
                 <div class="flex justify-between items-start mb-6">
-                  <span [class]="subject.status === 'active' 
-                                  ? 'bg-green-100 text-green-700 ring-1 ring-green-200' 
-                                  : 'bg-red-50 text-red-500 ring-1 ring-red-200'" 
+                  <span [class]="subject.status === 'active'
+                                  ? 'bg-green-100 text-green-700 ring-1 ring-green-200'
+                                  : 'bg-red-50 text-red-500 ring-1 ring-red-200'"
                         class="px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">
                       {{ subject.status }}
                   </span>
-                  
+
                   <button (click)="deleteSubject(subject.id)" class="text-gray-300 hover:text-red-500 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -73,7 +73,7 @@
 
                 <div class="flex items-center gap-4 text-sm font-bold text-gray-400 mb-8">
                   <div class="flex items-center gap-2">
-                    <span class="text-xl">📄</span>
+                    <span class="text-xl">??</span>
                     {{ subject.hasSyllabus ? 'Syllabus Synced' : 'Missing Syllabus' }}
                   </div>
                 </div>
@@ -81,15 +81,15 @@
 
               <div class="relative z-10 pt-6 mt-auto border-t border-gray-50">
                 @if (!subject.hasSyllabus) {
-                  <button class="w-full py-4 bg-gray-50 hover:bg-green-50 text-green-400 rounded-2xl font-black transition-colors flex items-center justify-center gap-3">
+                  <button (click)="openSyllabusModal(subject)" class="w-full py-4 bg-gray-50 hover:bg-green-50 text-green-400 rounded-2xl font-black transition-colors flex items-center justify-center gap-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
                     </svg>
                     Upload Syllabus
                   </button>
                 } @else {
-                  <button class="w-full py-4 bg-green-500 hover:bg-green-400 text-white rounded-2xl font-black transition-all shadow-lg shadow-green-500/20">
-                    Manage Questions
+                  <button (click)="openSyllabusModal(subject)" class="w-full py-4 bg-green-500 hover:bg-green-400 text-white rounded-2xl font-black transition-all shadow-lg shadow-green-500/20">
+                    Manage Topics
                   </button>
                 }
               </div>
@@ -102,9 +102,9 @@
 </div>
 
 @if (showModal()) {
-  <div class="fixed inset-0 z-100 flex items-center justify-center p-4">
+  <div class="fixed inset-0 z-[100] flex items-center justify-center p-4">
     <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-md" (click)="closeModal()"></div>
-    
+
     <div class="relative bg-white rounded-[3rem] shadow-2xl w-full max-w-lg overflow-hidden transform transition-all border border-gray-100">
       <div class="p-12">
         <div class="flex justify-between items-center mb-10">
@@ -115,8 +115,8 @@
         <form (ngSubmit)="createSubject()" #subjectForm="ngForm" class="space-y-8">
           <div>
             <label class="block text-sm font-black uppercase tracking-[0.2em] text-green-400 mb-3">Subject Identity</label>
-            <input 
-              type="text" name="subjectName" [(ngModel)]="newSubject.subjectName" required 
+            <input
+              type="text" name="subjectName" [(ngModel)]="newSubject.subjectName" required
               class="w-full px-6 py-4 bg-gray-100 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none text-gray-900 font-bold text-lg transition-all placeholder-gray-300"
               placeholder="e.g. Advanced ASP.NET Logic"
             >
@@ -124,7 +124,7 @@
 
           <div>
             <label class="block text-sm font-black uppercase tracking-[0.2em] text-green-400 mb-3">Description</label>
-            <textarea 
+            <textarea
               name="description" [(ngModel)]="newSubject.description" rows="3"
               class="w-full px-6 py-4 bg-gray-100 border-2 border-transparent focus:border-green-400 focus:bg-white rounded-2xl outline-none text-gray-900 font-bold text-lg transition-all placeholder-gray-300"
               placeholder="What should the AI understand about this course?"
@@ -132,15 +132,157 @@
           </div>
 
           <div class="flex gap-4 pt-4">
-            <button type="button" (click)="closeModal()" class="flex-1 px-8 py-4 text-gray-400 font-black text-lg hover:text-gray-400text-green-400 transition">Discard</button>
-            <button 
+            <button type="button" (click)="closeModal()" class="flex-1 px-8 py-4 text-gray-400 font-black text-lg transition">Discard</button>
+            <button
               type="submit" [disabled]="!subjectForm.valid"
-              class="flex-1 px-8 py-4 bg-green-500 hover:bg-green-400text-green-400 text-white rounded-full font-black text-lg transition shadow-xl shadow-green-500/30 disabled:opacity-30 disabled:grayscale"
+              class="flex-1 px-8 py-4 bg-green-500 text-white rounded-full font-black text-lg transition shadow-xl shadow-green-500/30 disabled:opacity-30 disabled:grayscale"
             >
               Save Module
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+}
+
+@if (showSyllabusModal()) {
+  <div class="fixed inset-0 z-[100] flex items-start justify-center p-4 md:p-10 overflow-y-auto bg-gray-900/40 backdrop-blur-md">
+    
+    <div class="absolute inset-0 pointer-events-auto" (click)="closeSyllabusModal()"></div>
+
+    <div class="relative bg-white rounded-[3rem] shadow-2xl w-full max-w-2xl border border-gray-100 my-auto transform transition-all flex flex-col max-h-[85vh] overflow-hidden pointer-events-auto">
+      
+      <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-green-50/50 to-transparent pointer-events-none z-10"></div>
+
+      <div class="p-10 md:p-12 overflow-y-auto flex-1 custom-scrollbar relative z-0">
+        
+        <div class="flex justify-between items-center mb-4 sticky top-0 bg-white/80 backdrop-blur-sm pb-2 z-20">
+          <div>
+            <h3 class="text-3xl font-black text-gray-900 tracking-tighter">
+              Syllabus <span class="text-green-400">Blueprint</span>
+            </h3>
+            <p class="text-gray-500 text-sm mt-1 font-medium">
+              Subject: <span class="font-bold text-gray-800">{{ selectedSubject()?.subjectName }}</span>
+            </p>
+          </div>
+          <button (click)="closeSyllabusModal()" class="w-12 h-12 flex items-center justify-center bg-gray-100 hover:bg-red-50 hover:text-red-500 rounded-full text-gray-500 font-black text-xl transition-all">
+            &times;
+          </button>
+        </div>
+
+        <hr class="border-gray-100 my-6" />
+
+        <div class="rounded-[2rem] border-2 border-dashed transition-all duration-300 p-8 text-center relative bg-gray-50/50"
+             [class.border-green-400]="selectedFile()" [class.bg-green-50/10]="selectedFile()" [class.border-gray-200]="!selectedFile()">
+          
+          <input 
+            type="file" 
+            id="syllabusFileInput"
+            accept=".pdf,application/pdf" 
+            (change)="onFileSelected($event)" 
+            class="hidden" 
+          />
+          
+          <label for="syllabusFileInput" class="cursor-pointer block">
+            <div class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center mx-auto mb-4 text-2xl transition-transform duration-300 transform group-hover:scale-105">
+              @if (selectedFile()) {
+                <span class="text-green-400">📄</span>
+              } @else {
+                <span class="text-gray-400">📤</span>
+              }
+            </div>
+            
+            @if (selectedFile()) {
+              <h4 class="text-lg font-black text-gray-900 mb-1 break-words max-w-md mx-auto px-4">{{ selectedFile()?.name }}</h4>
+              <p class="text-xs text-green-500 font-bold uppercase tracking-wider">Document Selected Successfully</p>
+            } @else {
+              <h4 class="text-lg font-black text-gray-900 mb-1">Select Curriculum PDF</h4>
+              <p class="text-sm text-gray-400 font-medium">Click to browse your local file system</p>
+            }
+          </label>
+
+          @if (selectedFile()) {
+            <div class="mt-6 flex justify-center">
+              <button 
+                (click)="uploadSyllabus()" 
+                [disabled]="uploading()" 
+                class="px-8 py-3.5 bg-green-400 hover:bg-green-500 text-white rounded-xl font-black text-sm transition-all transform hover:scale-105 shadow-xl shadow-green-500/20 disabled:opacity-40 disabled:pointer-events-none flex items-center gap-2"
+              >
+                @if (uploading()) {
+                  <div class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  <span>Parsing Architecture...</span>
+                } @else {
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                  <span>Upload & Extract Topics</span>
+                }
+              </button>
+            </div>
+          }
+        </div>
+
+        @if (syllabusError()) {
+          <div class="mt-4 p-4 bg-red-50 rounded-2xl border border-red-100 flex items-center gap-3 text-red-600">
+            <span class="text-lg">⚠️</span>
+            <p class="text-sm font-bold leading-none">{{ syllabusError() }}</p>
+          </div>
+        }
+
+        <div class="mt-8">
+          <div class="flex items-center justify-between mb-4 px-2">
+            <h4 class="text-xl font-black text-gray-900 tracking-tight">
+              Extracted Roadmap Modules
+            </h4>
+            @if (savingTopics()) {
+              <span class="text-xs text-green-400 font-black uppercase tracking-widest animate-pulse">Syncing Cache...</span>
+            }
+          </div>
+
+          <div class="rounded-[2rem] border border-gray-100 p-4 max-h-64 overflow-y-auto bg-gray-50/30 custom-scrollbar">
+            @if (loadingTopics()) {
+              <div class="flex flex-col items-center justify-center py-12">
+                <div class="animate-spin rounded-full h-8 w-8 border-2 border-green-400 border-t-transparent"></div>
+                <p class="text-xs font-black text-green-400 tracking-widest uppercase mt-4">Reading Segments...</p>
+              </div>
+            } @else if (topics().length === 0) {
+              <div class="text-center py-12 px-6">
+                <span class="text-3xl block mb-2">💡</span>
+                <p class="text-gray-400 font-bold text-sm">No functional roadmap generated yet.</p>
+                <p class="text-gray-400 text-xs mt-1">Upload a technical syllabus to compile structured topics map.</p>
+              </div>
+            } @else {
+              <div class="flex flex-col gap-2.5">
+                @for (topic of topics(); track topic.id) {
+                  <label class="group/item flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 hover:border-green-400 transition-all duration-300 cursor-pointer shadow-sm select-none"
+                         [class.ring-2]="topic.isSelected" [class.ring-green-400/20]="topic.isSelected" [class.border-green-400]="topic.isSelected">
+                    
+                    <div class="relative w-5 h-5 flex-shrink-0 mt-0.5 flex items-center justify-center rounded-md border-2 transition-colors duration-200"
+                         [class.bg-green-400]="topic.isSelected" [class.border-green-400]="topic.isSelected" [class.border-gray-300]="!topic.isSelected">
+                      <input 
+                        type="checkbox" 
+                        [checked]="topic.isSelected" 
+                        (change)="toggleTopicSelection(topic.id, $any($event.target).checked)" 
+                        class="absolute inset-0 opacity-0 cursor-pointer" 
+                      />
+                      @if (topic.isSelected) {
+                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/>
+                        </svg>
+                      }
+                    </div>
+
+                    <span class="text-sm font-black text-gray-800 tracking-tight whitespace-normal break-words leading-relaxed group-hover/item:text-gray-900 pr-2">
+                      {{ topic.name }}
+                    </span>
+                  </label>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
