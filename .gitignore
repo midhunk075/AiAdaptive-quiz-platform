@@ -1,0 +1,8 @@
+.vs/
+bin/
+obj/
+
+client/node_modules/
+client/dist/
+client/.angular/
+client/out-tsc/

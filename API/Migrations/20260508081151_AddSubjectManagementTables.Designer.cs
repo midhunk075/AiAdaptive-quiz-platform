@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260508081151_AddSubjectManagementTables")]
+    partial class AddSubjectManagementTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,16 +88,8 @@ namespace API.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CorrectAnswer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("DifficultyLevel")
                         .HasColumnType("int");
-
-                    b.Property<string>("Explanation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
@@ -107,15 +102,13 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("TopicId")
+                    b.Property<string>("Topic")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SubjectId");
-
-                    b.HasIndex("TopicId");
 
                     b.ToTable("Questions");
                 });
@@ -130,9 +123,6 @@ namespace API.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("HasSyllabus")
-                        .HasColumnType("bit");
 
                     b.Property<string>("MentorId")
                         .IsRequired()
@@ -179,29 +169,6 @@ namespace API.Migrations
                     b.ToTable("Syllabi");
                 });
 
-            modelBuilder.Entity("API.Entities.Topic", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsSelected")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SubjectId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("Topic");
-                });
-
             modelBuilder.Entity("API.Entities.Option", b =>
                 {
                     b.HasOne("API.Entities.Question", "Question")
@@ -221,15 +188,7 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.Topic", "Topic")
-                        .WithMany("Questions")
-                        .HasForeignKey("TopicId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Subject");
-
-                    b.Navigation("Topic");
                 });
 
             modelBuilder.Entity("API.Entities.Subject", b =>
@@ -254,17 +213,6 @@ namespace API.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("API.Entities.Topic", b =>
-                {
-                    b.HasOne("API.Entities.Subject", "Subject")
-                        .WithMany("Topics")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("API.Entities.Question", b =>
                 {
                     b.Navigation("Options");
@@ -275,13 +223,6 @@ namespace API.Migrations
                     b.Navigation("Questions");
 
                     b.Navigation("Syllabus");
-
-                    b.Navigation("Topics");
-                });
-
-            modelBuilder.Entity("API.Entities.Topic", b =>
-                {
-                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }
