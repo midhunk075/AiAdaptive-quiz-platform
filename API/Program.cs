@@ -1,15 +1,19 @@
+using API.Authentication.Interfaces;
+using API.Authentication.Repositories;
+using API.Authentication.Services;
 using API.Configuration;
 using API.Data;
 using API.Exceptions;
-using API.Interfaces;
 using API.Middleware;
-using API.Repositories;
-using API.Services;
+using API.Subjects.Interfaces;
+using API.Subjects.Repositories;
+using API.Subjects.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,7 +51,12 @@ builder.Services.Configure<JwtOptions>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
+builder.Services.AddScoped<ISyllabusService, SyllabusService>();
+builder.Services.AddScoped<ITopicGenerationService, TopicGenerationService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IQuestionGeneratorService, QuestionGeneratorService>();
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -62,7 +71,9 @@ builder.Services
             ValidateAudience = !string.IsNullOrWhiteSpace(configuredJwtOptions.Audience),
             ValidAudience = configuredJwtOptions.Audience,
             ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero
+            ClockSkew = TimeSpan.Zero,
+            NameClaimType = ClaimTypes.Name,
+            RoleClaimType = ClaimTypes.Role
         };
     });
 

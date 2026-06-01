@@ -8,12 +8,14 @@
     ".NETCoreApp,Version=v10.0": {
       "API/1.0.0": {
         "dependencies": {
+          "Google.GenAI": "1.6.2",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.5",
           "Microsoft.AspNetCore.OpenApi": "10.0.5",
           "Microsoft.EntityFrameworkCore": "10.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.5",
           "Microsoft.EntityFrameworkCore.Tools": "10.0.5",
-          "Scalar.AspNetCore": "2.13.20"
+          "Scalar.AspNetCore": "2.13.20",
+          "itext": "9.6.0"
         },
         "runtime": {
           "API.dll": {}
@@ -45,11 +47,119 @@
           }
         }
       },
+      "Google.Apis/1.69.0": {
+        "dependencies": {
+          "Google.Apis.Core": "1.69.0"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.dll": {
+            "assemblyVersion": "1.69.0.0",
+            "fileVersion": "1.69.0.0"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.69.0": {
+        "dependencies": {
+          "Google.Apis": "1.69.0",
+          "Google.Apis.Core": "1.69.0",
+          "System.Management": "7.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.Auth.dll": {
+            "assemblyVersion": "1.69.0.0",
+            "fileVersion": "1.69.0.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.69.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/net6.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.69.0.0",
+            "fileVersion": "1.69.0.0"
+          }
+        }
+      },
+      "Google.GenAI/1.6.2": {
+        "dependencies": {
+          "Google.Apis.Auth": "1.69.0",
+          "Microsoft.Extensions.AI.Abstractions": "10.4.0"
+        },
+        "runtime": {
+          "lib/net8.0/Google.GenAI.dll": {
+            "assemblyVersion": "1.6.2.0",
+            "fileVersion": "1.6.2.0"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "itext/9.6.0": {
+        "dependencies": {
+          "Microsoft.DotNet.PlatformAbstractions": "1.1.0",
+          "Microsoft.Extensions.DependencyModel": "10.0.5",
+          "itext.commons": "9.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/itext.barcodes.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.bouncy-castle-connector.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.forms.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.io.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.kernel.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.layout.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.pdfa.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.pdfua.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.sign.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.styledxmlparser.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          },
+          "lib/netstandard2.0/itext.svg.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
+          }
+        }
+      },
+      "itext.commons/9.6.0": {
+        "runtime": {
+          "lib/netstandard2.0/itext.commons.dll": {
+            "assemblyVersion": "9.6.0.0",
+            "fileVersion": "9.6.0.0"
           }
         }
       },
@@ -463,6 +573,14 @@
           }
         }
       },
+      "Microsoft.DotNet.PlatformAbstractions/1.1.0": {
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.DotNet.PlatformAbstractions.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore/10.0.5": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "10.0.5"
@@ -527,6 +645,14 @@
       "Microsoft.EntityFrameworkCore.Tools/10.0.5": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "10.0.5"
+        }
+      },
+      "Microsoft.Extensions.AI.Abstractions/10.4.0": {
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.AI.Abstractions.dll": {
+            "assemblyVersion": "10.4.0.0",
+            "fileVersion": "10.400.26.16002"
+          }
         }
       },
       "Microsoft.Extensions.DependencyModel/10.0.5": {
@@ -650,7 +776,7 @@
       },
       "Mono.TextTemplating/3.0.0": {
         "dependencies": {
-          "System.CodeDom": "6.0.0"
+          "System.CodeDom": "7.0.0"
         },
         "runtime": {
           "lib/net6.0/Mono.TextTemplating.dll": {
@@ -686,11 +812,11 @@
           }
         }
       },
-      "System.CodeDom/6.0.0": {
+      "System.CodeDom/7.0.0": {
         "runtime": {
-          "lib/net6.0/System.CodeDom.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.21.52210"
+          "lib/net7.0/System.CodeDom.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
           }
         }
       },
@@ -777,6 +903,25 @@
           }
         }
       },
+      "System.Management/7.0.2": {
+        "dependencies": {
+          "System.CodeDom": "7.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/System.Management.dll": {
+            "assemblyVersion": "7.0.0.2",
+            "fileVersion": "7.0.723.27404"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net7.0/System.Management.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "7.0.0.2",
+            "fileVersion": "7.0.723.27404"
+          }
+        }
+      },
       "System.Memory.Data/8.0.1": {
         "runtime": {
           "lib/net8.0/System.Memory.Data.dll": {
@@ -815,12 +960,54 @@
       "path": "azure.identity/1.14.2",
       "hashPath": "azure.identity.1.14.2.nupkg.sha512"
     },
+    "Google.Apis/1.69.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1TfjsXFejwIf7iWaE7A0FbnOEsk8FPlbdFAt1r+I8aSMQfLLdSVWCLdZz6TzuWVwoCGEuJUHTZ/FXdptdU3qWw==",
+      "path": "google.apis/1.69.0",
+      "hashPath": "google.apis.1.69.0.nupkg.sha512"
+    },
+    "Google.Apis.Auth/1.69.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ar07yxn/s41jdqQ3sMh8EAehiSvXQ9yE1MS4McmZINeSWvolnLHmIZ9Yxj4tHVIYYz0c7H/lpToVqm7C2aYx9g==",
+      "path": "google.apis.auth/1.69.0",
+      "hashPath": "google.apis.auth.1.69.0.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.69.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SXUcurNUPxYMtOnawvB2Av18VrPBC9W7So9q9ikmXIXLGiv4RX7Zbu4kc+8PbwTdd8wLt54r0PBGOT5RaKoTjQ==",
+      "path": "google.apis.core/1.69.0",
+      "hashPath": "google.apis.core.1.69.0.nupkg.sha512"
+    },
+    "Google.GenAI/1.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lkdrye+iqvyKxHNclzroGzdJodIFTvk4b2UHa4mOcQbeByxBe2lRN1y7r3CS+Q6ATw+dEn+0GKAkkvAiujDAJg==",
+      "path": "google.genai/1.6.2",
+      "hashPath": "google.genai.1.6.2.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "itext/9.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zs+t9M5gSux6eAd/5PqKU0YDFuxhXFSCx9mDqCEe3Uaz+1EajmNdNJDEi+cVK1KdN4vCNCoBe6cU0NV5ZNSvcw==",
+      "path": "itext/9.6.0",
+      "hashPath": "itext.9.6.0.nupkg.sha512"
+    },
+    "itext.commons/9.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tnq8J28uLNQ5Fsc6e40/gKziXT7eD1nWTQ7IO50HPFraWx+dRlbd9iSiT97XJPgaIi+BRAenACUG8ODU7cZuiw==",
+      "path": "itext.commons/9.6.0",
+      "hashPath": "itext.commons.9.6.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/10.0.5": {
       "type": "package",
@@ -906,6 +1093,13 @@
       "path": "microsoft.data.sqlclient.sni.runtime/6.0.2",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.6.0.2.nupkg.sha512"
     },
+    "Microsoft.DotNet.PlatformAbstractions/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Bl6KYfbFSIW3QIRHAp931iR5h01qHjKghdpAtncwbzNUs0+IUZ+XfwkIU0sQsR33ufGvi3u4dZMIYYFysjpHAA==",
+      "path": "microsoft.dotnet.platformabstractions/1.1.0",
+      "hashPath": "microsoft.dotnet.platformabstractions.1.1.0.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore/10.0.5": {
       "type": "package",
       "serviceable": true,
@@ -947,6 +1141,13 @@
       "sha512": "sha512-maSlvKez/gwy88zoLXCafRh0gEFmakM7fnf6zEi6nyItp7A1Negmp/YBodiuWcxLUguvVkPJZX15MnLeuJwjQA==",
       "path": "microsoft.entityframeworkcore.tools/10.0.5",
       "hashPath": "microsoft.entityframeworkcore.tools.10.0.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.AI.Abstractions/10.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t3S2H4do4YeNheIfE3GEl3MnKIrnxpbLu7a88spfApYR3in9ddhIq/GMtxgMaFjn/PUMTCFv5YH7Y6Q91dsDXQ==",
+      "path": "microsoft.extensions.ai.abstractions/10.4.0",
+      "hashPath": "microsoft.extensions.ai.abstractions.10.4.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyModel/10.0.5": {
       "type": "package",
@@ -1060,12 +1261,12 @@
       "path": "system.clientmodel/1.5.1",
       "hashPath": "system.clientmodel.1.5.1.nupkg.sha512"
     },
-    "System.CodeDom/6.0.0": {
+    "System.CodeDom/7.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
-      "path": "system.codedom/6.0.0",
-      "hashPath": "system.codedom.6.0.0.nupkg.sha512"
+      "sha512": "sha512-GLltyqEsE5/3IE+zYRP5sNa1l44qKl9v+bfdMcwg+M9qnQf47wK3H0SUR/T+3N4JEQXF3vV4CSuuo0rsg+nq2A==",
+      "path": "system.codedom/7.0.0",
+      "hashPath": "system.codedom.7.0.0.nupkg.sha512"
     },
     "System.Composition/9.0.0": {
       "type": "package",
@@ -1122,6 +1323,13 @@
       "sha512": "sha512-GJw3bYkWpOgvN3tJo5X4lYUeIFA2HD293FPUhKmp7qxS+g5ywAb34Dnd3cDAFLkcMohy5XTpoaZ4uAHuw0uSPQ==",
       "path": "system.identitymodel.tokens.jwt/8.0.1",
       "hashPath": "system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512"
+    },
+    "System.Management/7.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/qEUN91mP/MUQmJnM5y5BdT7ZoPuVrtxnFlbJ8a3kBJGhe2wCzBfnPFtK2wTtEEcf3DMGR9J00GZZfg6HRI6yA==",
+      "path": "system.management/7.0.2",
+      "hashPath": "system.management.7.0.2.nupkg.sha512"
     },
     "System.Memory.Data/8.0.1": {
       "type": "package",

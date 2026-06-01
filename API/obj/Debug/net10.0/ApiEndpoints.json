@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "API.Controllers.AccountController",
+    "ContainingType": "API.Authentication.Controllers.AccountController",
     "Method": "Login",
     "RelativePath": "api/Account/Login",
     "HttpMethod": "POST",
@@ -9,13 +9,13 @@
     "Parameters": [
       {
         "Name": "loginDTO",
-        "Type": "API.DTO.LoginDTO",
+        "Type": "API.Authentication.DTO.LoginDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "API.DTO.UserDTO",
+        "Type": "API.Authentication.DTO.UserDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -26,7 +26,7 @@
     ]
   },
   {
-    "ContainingType": "API.Controllers.AccountController",
+    "ContainingType": "API.Authentication.Controllers.AccountController",
     "Method": "GetUsers",
     "RelativePath": "api/Account/members",
     "HttpMethod": "GET",
@@ -35,7 +35,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[API.DTO.UserDTO, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[API.Authentication.DTO.UserDTO, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -46,7 +46,7 @@
     ]
   },
   {
-    "ContainingType": "API.Controllers.AccountController",
+    "ContainingType": "API.Authentication.Controllers.AccountController",
     "Method": "GetUser",
     "RelativePath": "api/Account/members/{id}",
     "HttpMethod": "GET",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "API.DTO.UserDTO",
+        "Type": "API.Authentication.DTO.UserDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -72,7 +72,7 @@
     ]
   },
   {
-    "ContainingType": "API.Controllers.AccountController",
+    "ContainingType": "API.Authentication.Controllers.AccountController",
     "Method": "RegisterUser",
     "RelativePath": "api/Account/Register",
     "HttpMethod": "POST",
@@ -81,13 +81,328 @@
     "Parameters": [
       {
         "Name": "registerDTO",
-        "Type": "API.DTO.RegisterDTO",
+        "Type": "API.Authentication.DTO.RegisterDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "API.DTO.UserDTO",
+        "Type": "API.Authentication.DTO.UserDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "GetMySubjects",
+    "RelativePath": "api/Subjects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[API.Subjects.DTO.SubjectResponseDTO, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "CreateSubject",
+    "RelativePath": "api/Subjects",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subjectCreateDTO",
+        "Type": "API.Subjects.DTO.SubjectCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API.Subjects.DTO.SubjectResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "GetSubject",
+    "RelativePath": "api/Subjects/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API.Subjects.DTO.SubjectResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "DeleteSubject",
+    "RelativePath": "api/Subjects/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "GenerateAdaptiveQuiz",
+    "RelativePath": "api/Subjects/{id}/generate-quiz",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "API.Subjects.DTO.AdaptiveQuizRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API.Subjects.DTO.QuizGenerationResponseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "GetSubjectQuestions",
+    "RelativePath": "api/Subjects/{id}/questions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[API.Subjects.DTO.SubjectQuestionDTO, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "DiscardQuestion",
+    "RelativePath": "api/Subjects/{id}/questions/{questionId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "questionId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "UpdateQuestionApproval",
+    "RelativePath": "api/Subjects/{id}/questions/{questionId}/approval",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "questionId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "isApproved",
+        "Type": "System.Boolean",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API.Subjects.DTO.SubjectQuestionDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "GetTopics",
+    "RelativePath": "api/Subjects/{id}/topics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[API.Subjects.DTO.TopicResponseDTO, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "UpdateTopicSelection",
+    "RelativePath": "api/Subjects/{id}/topics/selection",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "API.Subjects.DTO.UpdateTopicSelectionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[API.Subjects.DTO.TopicResponseDTO, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API.Subjects.Controllers.SubjectsController",
+    "Method": "UploadSyllabus",
+    "RelativePath": "api/Subjects/{id}/upload-syllabus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[API.Subjects.DTO.TopicResponseDTO, API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

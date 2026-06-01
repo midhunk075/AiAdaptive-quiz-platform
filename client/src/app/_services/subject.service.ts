@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { environment } from "../../environments/environment";
-import { Subject, SubjectCreate, SubjectTopic, TopicSelectionUpdate } from "../_models/subject";
+import { AdaptiveQuizRequest, QuizGenerationResponse, Subject, SubjectCreate, SubjectQuestion, SubjectTopic, TopicSelectionUpdate } from "../_models/subject";
 import { map } from "rxjs";
 
 @Injectable({
@@ -46,5 +46,21 @@ export class SubjectService {
         return this.http.put<SubjectTopic[]>(`${this.baseUrl}/subjects/${subjectId}/topics/selection`, {
             topics: updates
         });
+    }
+
+    generateQuiz(subjectId: string, request: AdaptiveQuizRequest) {
+        return this.http.post<QuizGenerationResponse>(`${this.baseUrl}/subjects/${subjectId}/generate-quiz`, request);
+    }
+
+    getQuestions(subjectId: string) {
+        return this.http.get<SubjectQuestion[]>(`${this.baseUrl}/subjects/${subjectId}/questions`);
+    }
+
+    setQuestionApproval(subjectId: string, questionId: string, isApproved: boolean) {
+        return this.http.put<SubjectQuestion>(`${this.baseUrl}/subjects/${subjectId}/questions/${questionId}/approval`, isApproved);
+    }
+
+    discardQuestion(subjectId: string, questionId: string) {
+        return this.http.delete(`${this.baseUrl}/subjects/${subjectId}/questions/${questionId}`);
     }
 }
